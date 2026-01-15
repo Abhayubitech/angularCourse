@@ -11,7 +11,10 @@ import { ComponentsComponent } from "../components/components.component";
 })
 export class AppComponent {
   title = 'angularCourse';
-   logData(event:Event){
+  //  logData(event:Event){
+  //  console.log(event)
+  //  }
+   logData(event:string){
    console.log(event)
    }
 }
