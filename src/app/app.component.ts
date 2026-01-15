@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SignalsComponent } from "../signals/signals.component";
 import { ComponentsComponent } from "../components/components.component";
@@ -11,5 +11,7 @@ import { ComponentsComponent } from "../components/components.component";
 })
 export class AppComponent {
   title = 'angularCourse';
-  
+   logData(event:Event){
+   console.log(event)
+   }
 }

@@ -1,4 +1,4 @@
-import { Component, input, Input, signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output, signal, WritableSignal } from '@angular/core';
 import { OnInit ,OnChanges,DoCheck,AfterContentInit,AfterViewChecked,AfterViewInit,AfterContentChecked,OnDestroy} from '@angular/core';
 @Component({
   selector: 'app-components',
@@ -9,6 +9,8 @@ import { OnInit ,OnChanges,DoCheck,AfterContentInit,AfterViewChecked,AfterViewIn
 export class ComponentsComponent implements OnInit,OnChanges,DoCheck,AfterContentInit,AfterContentChecked,AfterViewInit,AfterViewChecked,OnDestroy {
 
 title = input('')
+@Output() data = new EventEmitter()
+
   array:WritableSignal<string[]> = signal([])
 constructor(){
   this.array().push('constructor run')
@@ -36,5 +38,8 @@ ngAfterViewChecked(): void {
 }
 ngOnDestroy(): void {
     this.array().push('ngOnDestroy run')
+}
+emitEvent(){
+  this.data.emit('hello')
 }
 }
