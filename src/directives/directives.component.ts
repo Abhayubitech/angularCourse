@@ -28,8 +28,7 @@ export class DirectivesComponent {
  date = new Date()
  array = [12,3,3,3,4,3]
  ngOnDestroy(): void {
-  //Called once, before the instance is destroyed.
-  //Add 'implements OnDestroy' to the class.
+ 
   this.subs.unsubscribe()
   alert('component destroyed')
  }
