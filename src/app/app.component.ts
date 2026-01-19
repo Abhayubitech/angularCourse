@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { SignalsComponent } from "../signals/signals.component";
 import { ComponentsComponent } from "../components/components.component";
 import { BindingsComponent } from "../bindings/bindings.component";
@@ -9,7 +9,7 @@ import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SignalsComponent, ComponentsComponent, BindingsComponent, DirectivesComponent],
+  imports: [RouterOutlet, SignalsComponent, ComponentsComponent, BindingsComponent, DirectivesComponent,RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
