@@ -5,6 +5,7 @@ import { TestService } from '../services/test.service';
 import { HttpService } from '../services/http.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-directives',
@@ -13,28 +14,30 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   styleUrl: './directives.component.css'
 })
 export class DirectivesComponent {
- textClass = false;
- http = inject(HttpService)
- route = inject(Router)
- subs:Subscription
- constructor(public test:TestService){
- this.subs = this.http.data.subscribe((item)=>{
-   alert('lasldjflksd')
-  })
- }
- changeClass(){
-  const abc ='asdf'
-  
-  this.textClass = !this.textClass
- }
- date = new Date()
- array = [12,3,3,3,4,3]
- ngOnDestroy(): void {
- 
-  this.subs.unsubscribe()
-  alert('component destroyed')
- }
- navigateToSignals(){
-  this.route.navigate(['signals'])
- }
+ contactForm!: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]{10}$')
+        ]
+      ]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.contactForm.valid) {
+      console.log('Form Data:', this.contactForm.value);
+    } else {
+      this.contactForm.markAllAsTouched();
+    }
+  }
+
 }
