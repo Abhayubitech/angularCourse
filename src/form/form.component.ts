@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BgColorDirective } from '../directives/bg-color.directive';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,BgColorDirective],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })

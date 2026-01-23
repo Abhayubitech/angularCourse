@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject } from '@angular/core';
+import { Component, EventEmitter, HostBinding, HostListener, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { SignalsComponent } from "../signals/signals.component";
 import { ComponentsComponent } from "../components/components.component";
@@ -36,4 +36,25 @@ export class AppComponent {
    logData(event:string){
    console.log(event)
    }
+  //  @HostListener('document:click', ['$event'])
+  // handleClick(event: Event): void {
+  //    console.log(event)
+  // }
+  // @HostListener('window:keydown', ['$event'])
+  // handleKeydown(event: KeyboardEvent): void {
+  //   console.log(event)
+  //   if (event.key === 'Escape') {
+  //     alert('click on esc')
+  //   }
+  // }
+
+   @HostListener('click') onclick() {
+    window.alert('Hello Angular')
+  }  
+  // @HostBinding('style.backgroundColor') bgColor = 'yellow';
+  // @HostListener('window:resize', ['$event'])
+  // handleResize(event: Event): void {
+  //   const width = (event.target as Window).innerWidth;
+  //   console.log(width)
+  // }
 }

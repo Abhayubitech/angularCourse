@@ -3,12 +3,12 @@
     class="w-full max-w-md bg-white rounded-xl shadow-lg p-6 space-y-6"
     [formGroup]="form"
   >
-    <h2 class="text-2xl font-semibold text-gray-800 text-center">
+    <h2 appBgColor class="text-2xl font-semibold text-gray-800 text-center">
       Create Account
     </h2>
 
     <!-- Name -->
-    <div>
+    <div appBgColor >
       <label class="block text-sm font-medium text-gray-700 mb-1">
         Name
       </label>
@@ -22,7 +22,7 @@
   form.controls['name'].errors?.['required'] &&
   (form.controls['name'].touched || form.controls['name'].dirty)
 ) {
-  <p class="text-sm text-red-500 mt-1">
+  <p appBgColor class="text-sm text-red-500 mt-1">
     Name is required
   </p>
 }
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Email -->
-    <div>
+    <div appBgColor>
       <label class="block text-sm font-medium text-gray-700 mb-1">
         Email
       </label>

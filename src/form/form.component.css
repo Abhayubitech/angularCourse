@@ -1,0 +1,80 @@
+/*What is a Route Guard?
+Route Guards are used to control navigation in Angular applications. They decide whether a user
+can enter, leave, or access a route based on conditions like login, role, or unsaved data.
+1. CanActivate Guard
+Definition: Controls whether a user is allowed to enter a route.
+Use Case: Allow only logged-in users to open Dashboard.
+// auth.guard.ts
+canActivate(): boolean {
+const isLoggedIn = localStorage.getItem('login');
+if (isLoggedIn === 'true') {
+return true;
+}
+this.router.navigate(['/login']);
+return false;
+}
+// route
+{
+path: 'dashboard',
+component: DashboardComponent,
+canActivate: [AuthGuard]
+}
+
+2. CanActivateChild Guard
+Definition: Protects all child routes of a parent route.
+Use Case: Only admin can access admin child pages.
+// admin.guard.ts
+canActivateChild(): boolean {
+const role = localStorage.getItem('role');
+return role === 'admin';
+}
+// route
+{
+path: 'admin',
+canActivateChild: [AdminGuard],
+children: [
+{ path: 'users', component: UsersComponent },
+{ path: 'settings', component: SettingsComponent }
+]
+}
+
+3. CanDeactivate Guard
+Definition: Controls whether a user can leave a route.
+Use Case: Prevent leaving page with unsaved form.
+ // unsaved.guard.ts
+canDeactivate(component: any): boolean {
+return component.canLeave();
+}
+// component
+isSaved = false;
+canLeave(): boolean {
+return this.isSaved || confirm('Form not saved. Leave?');
+}
+
+4. CanMatch Guard
+Definition: Decides whether a route should be matched at all.
+Use Case: Role-based routing.
+// role.guard.ts
+canMatch(route: any): boolean {
+const role = localStorage.getItem('role');
+return role === route.data.role;
+}
+// routes
+{
+path: 'dashboard',
+component: AdminDashboardComponent,
+canMatch: [RoleGuard],
+data: { role: 'admin' }
+},
+{
+path: 'dashboard',
+component: UserDashboardComponent,
+canMatch: [RoleGuard],
+data: { role: 'user' }
+}
+
+Guard Summary
+1 CanActivate – Enter route permission
+2 CanActivateChild – Child route permission
+3 CanDeactivate – Leave route permission
+4 CanMatch – Route matching permission */

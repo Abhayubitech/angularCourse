@@ -4,6 +4,7 @@ import { SignalsComponent } from '../signals/signals.component';
 import { BindingsComponent } from '../bindings/bindings.component';
 import { WildCardComponent } from '../wild-card/wild-card.component';
 import { FormComponent } from '../form/form.component';
+import { authGuard } from '../guards/auth.guard';
 
 export const routes: Routes = [
      {
@@ -14,7 +15,8 @@ export const routes: Routes = [
     },
     {
         path:'home',
-        component:DirectivesComponent
+        component:DirectivesComponent,
+        canActivate: [authGuard]
     },
     {
         path:'form',
